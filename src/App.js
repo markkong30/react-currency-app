@@ -10,7 +10,7 @@ const NotFound = () => {
 const App = () => {
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg bg-dark fixed-top">
+      <nav className="navbar navbar-expand-lg bg-dark">
         <Link className="navbar-brand " to="/">
           <span className="mx-4" style={{fontSize: 30, color: 'white'}}>
           <i class="fab fa-gg-circle"></i>
