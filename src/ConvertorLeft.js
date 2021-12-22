@@ -13,16 +13,16 @@ class ConvertorLeft extends React.Component {
 
   componentDidMount() {
     fetch('https://altexchangerateapi.herokuapp.com/currencies')
-      .then(checkStatus)
-      .then(json)
-      .then((data) => {
-        const list = Object.getOwnPropertyNames(data);
-        this.setState({ currencyList: list });
-      })
-      .catch((error) => {
-        this.setState({ error: error.message });
-        console.log(error);
-      })
+    .then(checkStatus)
+    .then(json)
+    .then((data) => {
+      const list = Object.getOwnPropertyNames(data);
+      this.setState({ currencyList: list });
+    })
+    .catch((error) => {
+      this.setState({ error: error.message });
+      console.log(error);
+    })
   }
 
   render() {
@@ -43,7 +43,6 @@ class ConvertorLeft extends React.Component {
           <input className='my-4 text-center w-100' type='number' placeholder='1.00' step='0.0001' min='0' max='9999999'
             value={amountInput}
             onChange={amountInputHandler}
-
           />
         </form>
       </div>

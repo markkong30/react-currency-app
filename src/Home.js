@@ -5,17 +5,18 @@ import { json, checkStatus } from "./utils";
 import './Home.css';
 import ConvertorLeft from './ConvertorLeft';
 import ConvertorRight from './ConvertorRight';
+import ExchangeTable from './ExchangeTable';
 
 class CurrencyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: '',
-
       currencyLeft: 'AUD',
       currencyRight: 'AUD',
       amountInput: 1,
       amountAfterConvert: 1,
+      
     };
     this.currencyLeftSelect = this.currencyLeftSelect.bind(this);
     this.currencyRightSelect = this.currencyRightSelect.bind(this);
@@ -130,7 +131,9 @@ class CurrencyApp extends React.Component {
             </div>
           </div>
 
-          <div className='col-12 col-md-10' id='main_2'>
+          <div className='col-10' id='main_2'>
+          <h2 className='text-center my-3 pb-5 pb-md-0'>Exchange Table</h2>
+            <ExchangeTable />
 
 
             
