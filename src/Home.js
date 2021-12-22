@@ -3,15 +3,15 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import { json, checkStatus } from "./utils";
 import './Home.css';
-import  ConvertorLeft  from './ConvertorLeft';
-import  ConvertorRight  from './ConvertorRight';
+import ConvertorLeft from './ConvertorLeft';
+import ConvertorRight from './ConvertorRight';
 
 class CurrencyApp extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       error: '',
-      
+
       currencyLeft: 'AUD',
       currencyRight: 'AUD',
       amountInput: 1,
@@ -24,7 +24,7 @@ class CurrencyApp extends React.Component {
     this.sideSwap = this.sideSwap.bind(this);
   };
 
-  
+
 
   currencyLeftSelect(event) {
     const currencyLeft = event.target.value;
@@ -32,7 +32,7 @@ class CurrencyApp extends React.Component {
 
     const { currencyRight, amountInput } = this.state;
     if (currencyLeft == currencyRight) {
-      
+
       return this.setState({ amountAfterConvert: amountInput })
     }
     fetch(`https://altexchangerateapi.herokuapp.com/latest?from=${currencyLeft}&to=${currencyRight}`)
@@ -40,7 +40,7 @@ class CurrencyApp extends React.Component {
       .then(json)
       .then((data) => {
         let convert = (amountInput * data.rates[currencyRight]).toFixed(4);
-        
+
         this.setState({ amountAfterConvert: convert })
       })
       .catch((error) => {
@@ -94,7 +94,7 @@ class CurrencyApp extends React.Component {
       })
   }
 
-  amountInputSubmit (event) {
+  amountInputSubmit(event) {
     event.preventDefault();
   }
 
@@ -120,38 +120,20 @@ class CurrencyApp extends React.Component {
     return (
       <div className='container'>
         <div className='row justify-content-center'>
-          <div className='col-12 col-md-10' id='main'>
-            <h2 className='text-center my-3'>Convert</h2>
 
+          <div className='col-10' id='main_1'>
+            <h2 className='text-center my-3 pb-5 pb-md-0'>Convert</h2>
             <div className='row justify-content-center'>
-              <div className='col-10 col-md-4'>
-                <form className="dropdown" onSubmit={this.amountInputSubmit}>
-                  <h4 className='text-center pb-4'>From</h4>
+              <ConvertorLeft currencyLeftSelect={this.currencyLeftSelect} amountInputSubmit={this.amountInputSubmit} amountInputHandler={this.amountInputHandler} amountInput={amountInput} />
 
-                  <ConvertorLeft currencyLeftSelect={this.currencyLeftSelect} />
-
-                  <input className='my-4 text-center w-100' type='number' placeholder='1.00' step='0.0001' min='0' max='9999999'
-                    value={amountInput}
-                    onChange={this.amountInputHandler}
-                    
-                  />
-                </form>
-              </div>
-              <div className='col-10 col-md-4 d-flex justify-content-center align-self-center'>
-                <button className='btn exchange' onClick={this.sideSwap}>
-                  <i class="fas fa-exchange-alt"></i>
-                </button>
-              </div>
-              <div className='col-10 col-md-4 text-center'>
-                <form className="dropdown">
-                  <h4 className='text-center pb-4'>To</h4>
-
-                  <ConvertorRight currencyRightSelect={this.currencyRightSelect} />
-                  
-                  <h5 className='my-4'>{amountAfterConvert}</h5>
-                </form>
-              </div>
+              <ConvertorRight currencyRightSelect={this.currencyRightSelect} sideSwap={this.sideSwap} amountAfterConvert={amountAfterConvert} />
             </div>
+          </div>
+
+          <div className='col-12 col-md-10' id='main_2'>
+
+
+            
           </div>
         </div>
       </div>
