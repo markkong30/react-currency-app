@@ -10,10 +10,10 @@ const NotFound = () => {
 const App = () => {
   return (
     <Router>
-      <nav className="navbar navbar-expand-lg bg-dark">
+      <nav className="navbar navbar-expand-lg bg-dark" id='top'>
         <Link className="navbar-brand " to="/">
-          <span className="mx-4" style={{fontSize: 30, color: 'white'}}>
-          <i class="fab fa-gg-circle"></i>
+          <span className="mx-4 logo" >
+            <i className="fab fa-gg-circle"></i>
           </span>
           Currency Exchange App
         </Link>
@@ -22,6 +22,23 @@ const App = () => {
         <Route path="/" exact component={Home} />
         <Route component={NotFound} />
       </Switch>
+
+      <footer className="text-center bg-dark text-muted">
+        <div className="text-center p-4">
+          © 2021 Copyright :&ensp;
+          <a className="text-reset fw-bold" href="https://adoring-johnson-bb1319.netlify.app/" target="_blank">Personal Portfolio</a>
+        </div>
+      </footer>
+
+      <div className='position-fixed' id='fixed_button'>
+        <a href='#top'>
+          <button className='btn btn-dark'>
+            <i class="far fa-arrow-alt-circle-up"></i> 
+            <span className='d-none d-md-inline'>&ensp;Top</span>
+          </button>
+        </a>
+      </div>
+
     </Router>
   );
 }

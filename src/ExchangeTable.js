@@ -6,7 +6,7 @@ class ExchangeTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      currencyList: [],
+  
       tableBase: 'AUD',
       tableRatesLeft: [],
       tableRatesRight: [],
@@ -17,18 +17,6 @@ class ExchangeTable extends React.Component {
   }
 
   componentDidMount() {
-    fetch('https://altexchangerateapi.herokuapp.com/currencies')
-      .then(checkStatus)
-      .then(json)
-      .then((data) => {
-        const list = Object.getOwnPropertyNames(data);
-        this.setState({ currencyList: list });
-      })
-      .catch((error) => {
-        this.setState({ error: error.message });
-        console.log(error);
-      });
-
     fetch(`https://altexchangerateapi.herokuapp.com/latest?from=${this.state.tableBase}`)
       .then(checkStatus)
       .then(json)
@@ -71,7 +59,8 @@ class ExchangeTable extends React.Component {
   }
 
   render() {
-    const { currencyList, tableBase, currencyNames, currencyRates, tableRatesLeft, tableRatesRight } = this.state;
+    const { currencyList } = this.props;
+    const { tableBase, currencyNames, currencyRates, tableRatesLeft, tableRatesRight } = this.state;
 
     return (
       <React.Fragment>
@@ -88,13 +77,13 @@ class ExchangeTable extends React.Component {
 
           <div className='col-4'>
             {tableRatesLeft.map((ele) => {
-              return <p key={tableRatesLeft.indexOf(ele)}>{ele[0]} :&ensp; <span className='rates'>{ele[1]}</span></p>
+              return <p className='exchange_items' key={tableRatesLeft.indexOf(ele)}>{ele[0]} :&ensp; <span className='rates'>{ele[1]}</span></p>
             })}
           </div>
 
-          <div className='col-4'>
+          <div className='col-4 '>
             {tableRatesRight.map((ele) => {
-              return <p key={tableRatesRight.indexOf(ele)}>{ele[0]} :&ensp; <span className='rates'>{ele[1]}</span></p>
+              return <p className='exchange_items' key={tableRatesRight.indexOf(ele)}>{ele[0]} :&ensp; <span className='rates'>{ele[1]}</span></p>
             })}
           </div>
 
