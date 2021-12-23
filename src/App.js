@@ -36,7 +36,7 @@ const App = () => {
       <div className='position-fixed' id='fixed_button'>
         <a href='#top'>
           <button className='btn btn-dark'>
-            <i class="far fa-arrow-alt-circle-up"></i>
+            <i className="far fa-arrow-alt-circle-up"></i>
             <span className='d-none d-md-inline'>&ensp;Top</span>
           </button>
         </a>

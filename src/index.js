@@ -3,8 +3,6 @@ import ReactDOM from 'react-dom';
 import 'bootstrap/dist/css/bootstrap.css';
 import '@fortawesome/fontawesome-free/css/all.css';
 import '@popperjs/core';
-import 'react-dropdown-now/style.css';
-import 'money/money';
 import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';

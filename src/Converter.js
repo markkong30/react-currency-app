@@ -1,8 +1,8 @@
 import React from 'react';
 import { checkStatus, json } from './utils'
-import './Convertor.css'
+import './Converter.css'
 
-class Convertor extends React.Component {
+class Converter extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -105,8 +105,8 @@ class Convertor extends React.Component {
       amountInput: parseFloat(amountAfterConvert).toFixed(4),
       amountAfterConvert: parseFloat(amountInput).toFixed(4),
     })
-    const left = document.querySelector('#convertorLeft');
-    const right = document.querySelector('#convertorRight');
+    const left = document.querySelector('#converterLeft');
+    const right = document.querySelector('#converterRight');
     const leftSave = left.selectedIndex;
     left.selectedIndex = right.selectedIndex;
     right.selectedIndex = leftSave;
@@ -126,7 +126,7 @@ class Convertor extends React.Component {
           <form className="dropdown" onSubmit={this.amountInputSubmit}>
             <h4 className='text-center pb-4'>From</h4>
 
-            <select className='text-center w-100' id="convertorLeft" onChange={this.currencyLeftSelect}>
+            <select className='text-center w-100' id="converterLeft" onChange={this.currencyLeftSelect}>
               {listMap}
             </select>
 
@@ -146,7 +146,7 @@ class Convertor extends React.Component {
         <div className='col-10 col-md-4 text-center'>
           <form>
             <h4 className='text-center pb-4'>To</h4>
-            <select className='text-center w-100' id="convertorRight" onChange={this.currencyRightSelect}>
+            <select className='text-center w-100' id="converterRight" onChange={this.currencyRightSelect}>
               {listMap}
             </select>
 
@@ -158,5 +158,5 @@ class Convertor extends React.Component {
   }
 }
 
-export default Convertor;
+export default Converter;
 

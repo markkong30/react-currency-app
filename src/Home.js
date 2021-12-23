@@ -1,7 +1,7 @@
 import React from 'react';
 import { json, checkStatus } from "./utils";
 import './Home.css';
-import Convertor from './Convertor';
+import Converter from './Converter';
 import ExchangeTable from './ExchangeTable';
 
 class CurrencyApp extends React.Component {
@@ -40,7 +40,7 @@ class CurrencyApp extends React.Component {
           <div className='col-10' id='main_1'>
             <h2 className='text-center my-3 pb-5 pb-md-0'>Convert</h2>
             <div className='row justify-content-center'>
-              <Convertor currencyList={currencyList} />
+              <Converter currencyList={currencyList} />
             </div>
           </div>
 
