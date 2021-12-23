@@ -6,26 +6,15 @@
   background-color: rgb(243, 243, 243);
 }
 
-button.exchange {
-  font-size: 50px;
-  padding: 0 15px;
-  background: rgb(160, 160, 226);
-  border-radius: 20%;
-  text-shadow: 2px 2px;
-  outline-offset: 4px;
-  border: 1px groove;
-}
-
 @media (max-width: 768px) {
   #main_1, #main_2 {
     transform: scale(0.9)
   }
 }
 
-@media (max-width: 768px) {
-  button.exchange {
-    transform: rotate(90deg)
-  }
+#error {
+  font-size: 100px;
+  margin-top: 200px;
 }
 
 

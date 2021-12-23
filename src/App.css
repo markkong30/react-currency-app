@@ -5,13 +5,19 @@ color: white;
 
 #fixed_button {
   right: 30px;
-  bottom: 30px;
+  bottom: 60px;
 
 }
 
 @media (max-width: 768px) {
   #fixed_button {
     right: 5px;
-    bottom: 30px;
+    bottom: 60px;
   }
+}
+
+
+#portfolio {
+  padding-left: 10px  ;
+  font-size: 20px;
 }

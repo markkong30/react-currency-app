@@ -1,5 +1,6 @@
 import React from 'react';
 import { checkStatus, json } from './utils'
+import './Convertor.css'
 
 class Convertor extends React.Component {
   constructor(props) {
@@ -9,7 +10,6 @@ class Convertor extends React.Component {
       currencyRight: 'AUD',
       amountInput: 1,
       amountAfterConvert: 1,
-
     }
     this.currencyLeftSelect = this.currencyLeftSelect.bind(this);
     this.currencyRightSelect = this.currencyRightSelect.bind(this);
@@ -24,15 +24,14 @@ class Convertor extends React.Component {
 
     const { currencyRight, amountInput } = this.state;
     if (currencyLeft == currencyRight) {
-
       return this.setState({ amountAfterConvert: amountInput })
     }
+
     fetch(`https://altexchangerateapi.herokuapp.com/latest?from=${currencyLeft}&to=${currencyRight}`)
       .then(checkStatus)
       .then(json)
       .then((data) => {
         let convert = (amountInput * data.rates[currencyRight]).toFixed(4);
-
         this.setState({ amountAfterConvert: convert })
       })
       .catch((error) => {
@@ -49,6 +48,7 @@ class Convertor extends React.Component {
     if (currencyLeft == currencyRight) {
       return this.setState({ amountAfterConvert: amountInput })
     }
+
     fetch(`https://altexchangerateapi.herokuapp.com/latest?from=${currencyLeft}&to=${currencyRight}`)
       .then(checkStatus)
       .then(json)
@@ -64,6 +64,13 @@ class Convertor extends React.Component {
 
   amountInputHandler(event) {
     const amountInput = event.target.value;
+    const check = amountInput.length - amountInput.indexOf('.') - 1;
+    if (check > 4 && amountInput.indexOf('.') !== -1) {
+      return;
+    } else if (amountInput.length > 10) {
+      return;
+    }
+
     this.setState({ amountInput });
     const { currencyLeft, currencyRight } = this.state;
     if (currencyLeft == currencyRight) {

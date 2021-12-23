@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Link, Switch } from "react-router-dom";
 import Home from './Home';
-
 import './App.css';
 
 const NotFound = () => {
   return <h2>404 Not Found</h2>;
 }
+
 const App = () => {
   return (
     <Router>
@@ -25,20 +25,22 @@ const App = () => {
 
       <footer className="text-center bg-dark text-muted">
         <div className="text-center p-4">
-          © 2021 Copyright :&ensp;
-          <a className="text-reset fw-bold" href="https://adoring-johnson-bb1319.netlify.app/" target="_blank">Personal Portfolio</a>
+          <a className="text-reset fw-bold" href="https://adoring-johnson-bb1319.netlify.app/" target="_blank">Personal Portfolio
+            <span id='portfolio'>
+              <i className="far fa-address-card"></i>
+            </span>
+          </a>
         </div>
       </footer>
 
       <div className='position-fixed' id='fixed_button'>
         <a href='#top'>
           <button className='btn btn-dark'>
-            <i class="far fa-arrow-alt-circle-up"></i> 
+            <i class="far fa-arrow-alt-circle-up"></i>
             <span className='d-none d-md-inline'>&ensp;Top</span>
           </button>
         </a>
       </div>
-
     </Router>
   );
 }

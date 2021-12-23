@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from "react-router-dom";
 import { json, checkStatus } from "./utils";
 import './Home.css';
 import Convertor from './Convertor';
@@ -16,20 +15,23 @@ class CurrencyApp extends React.Component {
 
   componentDidMount() {
     fetch('https://altexchangerateapi.herokuapp.com/currencies')
-    .then(checkStatus)
-    .then(json)
-    .then((data) => {
-      const list = Object.getOwnPropertyNames(data);
-      this.setState({ currencyList: list });
-    })
-    .catch((error) => {
-      this.setState({ error: error.message });
-      console.log(error);
-    })
+      .then(checkStatus)
+      .then(json)
+      .then((data) => {
+        const list = Object.getOwnPropertyNames(data);
+        this.setState({ currencyList: list });
+      })
+      .catch((error) => {
+        this.setState({ error: error.message });
+        console.log(error);
+      })
   }
 
   render() {
     const { currencyList } = this.state;
+    if (currencyList.length == 0) {
+      return <h1 className='text-center' id='error'>Server Error</h1>;
+    }
 
     return (
       <div className='container-fluid'>
@@ -43,8 +45,8 @@ class CurrencyApp extends React.Component {
           </div>
 
           <div className='col-12 py-md-4' id='main_2'>
-          <h2 className='text-center my-5'>Exchange Table</h2>
-            <ExchangeTable currencyList={currencyList}/>
+            <h2 className='text-center my-5'>Exchange Table</h2>
+            <ExchangeTable currencyList={currencyList} />
           </div>
         </div>
       </div>
