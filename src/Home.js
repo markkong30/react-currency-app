@@ -131,8 +131,8 @@ class CurrencyApp extends React.Component {
             </div>
           </div>
 
-          <div className='col-10' id='main_2'>
-          <h2 className='text-center my-3 pb-5 pb-md-0'>Exchange Table</h2>
+          <div className='col-12' id='main_2'>
+          <h2 className='text-center my-5'>Exchange Table</h2>
             <ExchangeTable />
 
 

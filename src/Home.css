@@ -17,5 +17,9 @@ button.exchange {
     transform: rotate(90deg)
   }
 }
- 
+
+#main_2 {
+  max-height: 500px;
+  overflow-y: scroll;
+}
  

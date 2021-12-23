@@ -1,5 +1,6 @@
 import React from 'react';
-import { checkStatus, json } from './utils'
+import { checkStatus, json } from './utils';
+import './ExchangeTable.css';
 
 class ExchangeTable extends React.Component {
   constructor(props) {
@@ -7,10 +8,10 @@ class ExchangeTable extends React.Component {
     this.state = {
       currencyList: [],
       tableBase: 'AUD',
-      tableRates: [],
+      tableRatesLeft: [],
+      tableRatesRight: [],
     }
     this.tableSubmit = this.tableSubmit.bind(this);
-
     this.tableBaseSelect = this.tableBaseSelect.bind(this);
 
   }
@@ -34,7 +35,10 @@ class ExchangeTable extends React.Component {
       .then((data) => {
 
         const tableRates = Object.entries(data.rates);
-        this.setState({ tableRates });
+        const tableRatesLeft = tableRates.slice(0,16)
+        const tableRatesRight = tableRates.slice(16)
+
+        this.setState({ tableRatesLeft, tableRatesRight });
       })
       .catch((error) => {
         this.setState({ error: error.message });
@@ -42,13 +46,9 @@ class ExchangeTable extends React.Component {
       })
   }
 
-
-
-
   tableSubmit(event) {
     event.preventDefault();
   }
-
 
   tableBaseSelect(event) {
     const tableBase = event.target.value;
@@ -58,44 +58,43 @@ class ExchangeTable extends React.Component {
       .then(checkStatus)
       .then(json)
       .then((data) => {
-
         const tableRates = Object.entries(data.rates);
-        this.setState({ tableRates });
+        const tableRatesLeft = tableRates.slice(0,16)
+        const tableRatesRight = tableRates.slice(16)
+
+        this.setState({ tableRatesLeft, tableRatesRight });
       })
       .catch((error) => {
         this.setState({ error: error.message });
         console.log(error);
       })
-
-
-
   }
 
   render() {
-
-    const { currencyList, tableBase, currencyNames, currencyRates, tableRates } = this.state;
+    const { currencyList, tableBase, currencyNames, currencyRates, tableRatesLeft, tableRatesRight } = this.state;
 
     return (
       <React.Fragment>
-        <div className='row justify-content-center align-items-center'>
-          <form className='col-6' onSubmit={this.tableSubmit}>
-
+        <div className='row justify-content-center'>
+          <form className='col-4' onSubmit={this.tableSubmit}>
             <select className='text-center w-100'
               onChange={this.tableBaseSelect}>
               {currencyList.map((currency) => {
                 return <option key={currency} value={currency}>{currency}</option>
               })}
             </select>
-
-            <h1>1.00</h1>
-
+            <h1 className='py-5 text-center'>1.00</h1>
           </form>
 
-          <div className='col-6'>
-            {tableRates.map((ele) => {
-              return (
-                <p>{ele[0]} : {ele[1]}</p>
-              )
+          <div className='col-4'>
+            {tableRatesLeft.map((ele) => {
+              return <p key={tableRatesLeft.indexOf(ele)}>{ele[0]} :&ensp; <span className='rates'>{ele[1]}</span></p>
+            })}
+          </div>
+
+          <div className='col-4'>
+            {tableRatesRight.map((ele) => {
+              return <p key={tableRatesRight.indexOf(ele)}>{ele[0]} :&ensp; <span className='rates'>{ele[1]}</span></p>
             })}
           </div>
 
