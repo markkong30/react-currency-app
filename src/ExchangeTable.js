@@ -6,14 +6,11 @@ class ExchangeTable extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-  
       tableBase: 'AUD',
       tableRatesLeft: [],
       tableRatesRight: [],
     }
-    this.tableSubmit = this.tableSubmit.bind(this);
     this.tableBaseSelect = this.tableBaseSelect.bind(this);
-
   }
 
   componentDidMount() {
@@ -22,8 +19,8 @@ class ExchangeTable extends React.Component {
       .then(json)
       .then((data) => {
         const tableRates = Object.entries(data.rates);
-        const tableRatesLeft = tableRates.slice(0,16)
-        const tableRatesRight = tableRates.slice(16)
+        const tableRatesLeft = tableRates.slice(0,16);
+        const tableRatesRight = tableRates.slice(16);
         
         this.setState({ tableRatesLeft, tableRatesRight });
       })
@@ -31,10 +28,6 @@ class ExchangeTable extends React.Component {
         this.setState({ error: error.message });
         console.log(error);
       })
-  }
-
-  tableSubmit(event) {
-    event.preventDefault();
   }
 
   tableBaseSelect(event) {
@@ -59,13 +52,13 @@ class ExchangeTable extends React.Component {
 
   render() {
     const { currencyList } = this.props;
-    const { tableBase, currencyNames, currencyRates, tableRatesLeft, tableRatesRight } = this.state;
+    const { tableRatesLeft, tableRatesRight } = this.state;
 
     return (
       <React.Fragment>
         <div className='row justify-content-center'>
-          <form className='col-4 col-md-3' onSubmit={this.tableSubmit}>
-            <select className='text-center w-100'
+          <form className='col-4 col-md-3'>
+            <select className='form-control form-select text-center w-100'
               onChange={this.tableBaseSelect}>
               {currencyList.map((currency) => {
                 return <option key={currency} value={currency}>{currency}</option>
